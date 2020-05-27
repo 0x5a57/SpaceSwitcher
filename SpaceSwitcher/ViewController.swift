@@ -58,7 +58,6 @@ class ViewController: NSViewController {
                 // 触发快捷键
                 // 0x12是数字键1
                 CtrlWithKey(keyCode: 0x12)
-                
             }
             if event.scrollingDeltaY<0{
                 print("向下滚了")
@@ -122,7 +121,7 @@ func IsInAreaHeight() -> Bool {
 // 这里有一张完整的按键表：https://i.stack.imgur.com/LD8pT.png
 // 来源：https://stackoverflow.com/questions/3202629/where-can-i-find-a-list-of-mac-virtual-key-codes/16125341
 func CtrlWithKey(keyCode:UInt) {
-    // 0x3b是Ctrl键
+    // 0x3b is Ctrl key
     let controlKeyDownEvent = CGEvent(keyboardEventSource: nil, virtualKey: CGKeyCode(0x3B), keyDown: true)
     controlKeyDownEvent?.flags = CGEventFlags.maskControl
     controlKeyDownEvent?.post(tap: CGEventTapLocation.cghidEventTap)
@@ -138,4 +137,12 @@ func CtrlWithKey(keyCode:UInt) {
     let controlKeyUpEvent = CGEvent(keyboardEventSource: nil, virtualKey: CGKeyCode(0x3B), keyDown: false)
     controlKeyUpEvent?.flags = CGEventFlags.maskControl
     controlKeyUpEvent?.post(tap: CGEventTapLocation.cghidEventTap)
+}
+
+// 通过脚本来调用快捷键，但是权限问题搞不定
+func callShortcutByAppleScript(){
+    let script = NSAppleScript(source: "tell application \"System Events\" to key code 124 using control down")!
+    var errorDict : NSDictionary?
+    script.executeAndReturnError(&errorDict)
+    if errorDict != nil { print(errorDict!) }
 }
