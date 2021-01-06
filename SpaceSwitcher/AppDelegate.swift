@@ -21,8 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let statusBar = NSStatusBar.system
         statusBarItem = statusBar.statusItem(
             withLength: NSStatusItem.squareLength)
-        statusBarItem.button?.title = "🌯"
-        let statusBarMenu = NSMenu(title: "Cap Status Bar Menu")
+//        statusBarItem.button?.title = "🌯"
+        statusBarItem.button?.title = "◻️"
+        let statusBarMenu = NSMenu(title: "SpaceSwitcher")
         statusBarItem.menu = statusBarMenu
         
         // 添加选项
