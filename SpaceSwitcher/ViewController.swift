@@ -12,6 +12,7 @@ class ViewController: NSViewController {
     lazy var window: NSWindow = self.view.window!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSApp.setActivationPolicy(.prohibited)
         
         // 鼠标移动监视器
         NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved, handler:{(event:NSEvent) in
